@@ -34,7 +34,7 @@ export class CalendlyRepository {
   }
 
   async getCalendlyInfoByMentorId(mentorId: string) {
-    return this.prisma.calendlyInfo.findUnique({
+    return this.prisma.calendlyInfo.findFirst({
       where: { mentorId },
     });
   }

@@ -17,7 +17,7 @@ export class UserRepository extends PrismaClient {
 
   async findUserByEmail(email: string): Promise<UserEntity> {
     return this.users
-      .findUnique({
+      .findFirst({
         where: { email },
       })
       .catch(handleError);
@@ -25,7 +25,7 @@ export class UserRepository extends PrismaClient {
 
   async findUserById(id: string): Promise<any> {
     return this.users
-      .findUnique({
+      .findFirst({
         where: { id },
         select: {
           id: true,

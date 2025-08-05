@@ -58,7 +58,7 @@ export class MentorRepository extends PrismaClient {
 
   async findMentorByEmail(email: string): Promise<MentorEntity> {
     return this.mentors
-      .findUnique({
+      .findFirst({
         where: { email },
       })
       .catch(handleError);
@@ -66,7 +66,7 @@ export class MentorRepository extends PrismaClient {
 
   async findFullMentorById(id: string): Promise<MentorEntity> {
     return this.mentors
-      .findUnique({
+      .findFirst({
         where: { id },
       })
       .catch(handleError);
@@ -74,7 +74,7 @@ export class MentorRepository extends PrismaClient {
 
   async findMentorById(id: string) {
     return this.mentors
-      .findUnique({
+      .findFirst({
         where: { id },
         select: {
           id: true,
