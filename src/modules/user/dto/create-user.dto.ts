@@ -11,7 +11,6 @@ import {
   MaxLength,
 } from 'class-validator';
 import { Match } from '../../../modules/mentors/decorators/match.decorator';
-import { ValidateAge } from '../../../modules/mentors/decorators/validateAge.decorator';
 
 export class CreateUserDto {
   @IsString()
@@ -27,9 +26,6 @@ export class CreateUserDto {
   @IsDate()
   @MaxDate(new Date(), {
     message: 'The date must be before the current date',
-  })
-  @ValidateAge(15, {
-    message: 'User must be at least 15 years old',
   })
   @ApiProperty({
     required: true,

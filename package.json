@@ -95,6 +95,10 @@
       "json",
       "ts"
     ],
+      "js",
+      "json",
+      "ts"
+    ],
     "rootDir": "src",
     "testRegex": "..spec.ts$",
     "coverageThreshold": {
