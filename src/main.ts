@@ -10,7 +10,11 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.enableCors({
-    origin: 'http://localhost:3001',
+    origin: [
+      process.env.REMOTE_FRONTEND_URL,
+      process.env.URL_ORIGIN_PROD,
+      process.env.URL_ORIGIN_LOCALHOST,
+    ],
     credentials: true,
   });
 
