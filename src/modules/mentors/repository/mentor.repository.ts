@@ -23,31 +23,33 @@ export class MentorRepository extends PrismaClient {
   }
 
   async findAllMentors(): Promise<MentorEntity[]> {
-    return this.mentors.findMany({
-      select: {
-        id: true,
-        fullName: true,
-        email: true,
-        gender: true,
-        aboutMe: true,
-        specialties: true,
-        role: true,
-        dateOfBirth: true,
-        emailConfirmed: true,
-        registerComplete: true,
-        accessAttempt: true,
-        code: true,
-        deleted: true,
-        calendlyInfo: true,
-        history: true,
-        testimony: true,
-        createdAt: true,
-        updatedAt: true
-      },
-      where: {
-        deleted: false
-      }
-    }).catch(handleError);
+    return this.mentors
+      .findMany({
+        select: {
+          id: true,
+          fullName: true,
+          email: true,
+          gender: true,
+          aboutMe: true,
+          specialties: true,
+          role: true,
+          dateOfBirth: true,
+          emailConfirmed: true,
+          registerComplete: true,
+          accessAttempt: true,
+          code: true,
+          deleted: true,
+          calendlyInfo: true,
+          history: true,
+          testimony: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+        where: {
+          deleted: false,
+        },
+      })
+      .catch(handleError);
   }
 
   async findAllRegisteredMentors(): Promise<MentorEntity[]> {
@@ -145,5 +147,9 @@ export class MentorRepository extends PrismaClient {
     await this.mentors
       .update({ where: { id }, data: { registerComplete: true } })
       .catch(handleError);
+  }
+//Apenas para uso interno.
+  async deleteMentor(id: string): Promise<void> {
+    await this.mentors.delete({ where: { id } }).catch(handleError);
   }
 }

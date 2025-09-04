@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { GenerateCodeUtil } from '../../shared/utils/generate-code.util';
 import { MailModule } from '../mails/mail.module';
@@ -20,12 +20,15 @@ import { UploadProfileImageService } from './services/uploadProfileImage.service
 import { JwtService } from '@nestjs/jwt';
 import { ListAllRegisteredMentorsService } from './services/listAllRegisteredMentors.service';
 import { ScheduleModule } from '@nestjs/schedule';
+import { DeleteCalendlyInfoService } from '../calendly/services/delete-calendly-info.service';
+import { CalendlyModule } from '../calendly/calendly.module';
 
 @Module({
   imports: [
     MailModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     ScheduleModule.forRoot(),
+    forwardRef(() => CalendlyModule),
   ],
   controllers: [MentorController],
   providers: [
